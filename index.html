@@ -1,0 +1,55 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CPU Instruction Cycle Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <h1>CPU Instruction Cycle Simulator</h1>
+    <p class="sub">Live Fetch → Decode → Execute Visualization</p>
+
+    <div class="controls">
+      <button id="btnRun" class="btn run">▶ Run</button>
+      <button id="btnStep" class="btn step">⏭ Step</button>
+      <button id="btnPause" class="btn pause">⏸ Pause</button>
+      <button id="btnReset" class="btn reset">↻ Reset</button>
+      <label class="speed">Speed <input type="range" id="speed" min="100" max="1500" step="100" value="700" /></label>
+      <span class="count">Cycles: <b id="cycles">0</b></span>
+    </div>
+
+    <section class="card current">
+      <h2>Current CPU Cycle</h2>
+      <div class="phases">
+        <span class="chip" id="ph-fetch">FETCH</span>
+        <span class="chip" id="ph-decode">DECODE</span>
+        <span class="chip" id="ph-execute">EXECUTE</span>
+      </div>
+      <div class="state" id="stateText">READY</div>
+      <p class="desc" id="descText">Press Step or Run to begin the instruction cycle.</p>
+    </section>
+
+    <section class="regs">
+      <div class="reg r-pc"><h3>PC</h3><b id="reg-pc">00</b><small>Program Counter</small></div>
+      <div class="reg r-mar"><h3>MAR</h3><b id="reg-mar">00</b><small>Memory Address Register</small></div>
+      <div class="reg r-mdr"><h3>MDR</h3><b id="reg-mdr">00</b><small>Memory Data Register</small></div>
+      <div class="reg r-ir"><h3>IR</h3><b id="reg-ir">---</b><small>Instruction Register</small></div>
+      <div class="reg r-acc"><h3>ACC</h3><b id="reg-acc">00</b><small>Accumulator</small></div>
+    </section>
+
+    <section class="card">
+      <h2>Memory</h2>
+      <div class="memory" id="memory"></div>
+      <p class="legend"><i class="dot pc"></i>PC points here <i class="dot mar"></i>MAR address</p>
+    </section>
+
+    <section class="card">
+      <h2>Execution Log</h2>
+      <ol class="log" id="log"></ol>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
